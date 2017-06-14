@@ -9,6 +9,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 public class Login_First {
@@ -18,7 +21,7 @@ public class Login_First {
 
     @Before
     public void start(){
-        driver = new ChromeDriver();
+        driver = new InternetExplorerDriver();
     }
 
     @Test
