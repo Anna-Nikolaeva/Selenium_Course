@@ -41,7 +41,7 @@ public class CreateNewProduct extends TestBase {
         driver.findElement(By.name("head_title[en]")).sendKeys("head_title[en]");
         driver.findElement(By.name("meta_description[en]")).sendKeys("meta_description[en]");
         driver.findElement(By.cssSelector("a[href*=tab-prices]")).click();
-        
+
         //Prices tab
         WebElement purchase_price = driver.findElement(By.name("purchase_price"));
         purchase_price.clear();
