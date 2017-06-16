@@ -31,7 +31,7 @@ public class CreateNewProduct extends TestBase {
         driver.findElement(By.name("date_valid_from")).sendKeys("12122016");
         driver.findElement(By.name("date_valid_to")).sendKeys("11112017");
         driver.findElement(By.cssSelector("a[href*=tab-information]")).click();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
         //Information tab
         Select manufacturer = new Select(driver.findElement(By.name("manufacturer_id")));
         manufacturer.selectByValue("1");
@@ -41,7 +41,7 @@ public class CreateNewProduct extends TestBase {
         driver.findElement(By.name("head_title[en]")).sendKeys("head_title[en]");
         driver.findElement(By.name("meta_description[en]")).sendKeys("meta_description[en]");
         driver.findElement(By.cssSelector("a[href*=tab-prices]")).click();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        
         //Prices tab
         WebElement purchase_price = driver.findElement(By.name("purchase_price"));
         purchase_price.clear();

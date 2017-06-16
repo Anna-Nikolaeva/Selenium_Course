@@ -33,6 +33,7 @@ public class TestBase {
          //driver = new FirefoxDriver(options);
         //driver = new InternetExplorerDriver();
         driver = new ChromeDriver();
+        wait = new WebDriverWait(driver,30);
     }
 
     @After
