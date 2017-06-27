@@ -2,10 +2,10 @@
  * Created by anna8 on 03.06.2017.
  */
 
+import AddDeleteProduct.TestBase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Assert;
 
 import static org.junit.Assert.*;
 
@@ -15,24 +15,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import java.util.List;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
-public class Verify_Menu_Items {
+public class Verify_Menu_Items extends TestBase {
 
     private WebDriver driver;
     private WebDriverWait wait;
 
-    public void Login() {
-        driver.navigate().to("http://localhost/litecart/admin/");
-        driver.findElement(By.name("username")).sendKeys("admin");
-        driver.findElement(By.name("password")).sendKeys("admin");
-        driver.findElement(By.name("login")).click();
-    }
 
     public boolean findH1(){
         try {
@@ -50,7 +40,7 @@ public class Verify_Menu_Items {
 
     @Test
     public void Click_Menu_Items() {
-        Login();
+        app.loginToAdminPage();
 
         List<WebElement> initialList = driver.findElements(By.cssSelector("ul#box-apps-menu > li#app-"));
 

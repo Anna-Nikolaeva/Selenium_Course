@@ -2,6 +2,7 @@
  * Created by anna8 on 04.06.2017.
  */
 
+import AddDeleteProduct.TestBase;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.openqa.selenium.By;
@@ -13,12 +14,12 @@ public class Verify_Countries_Sorting extends TestBase {
 
     @Test
     public void sortingCountries() {
-        Login();
-        driver.findElement(By.cssSelector("a[href*=countries]")).click();
+        app.loginToAdminPage();
+        app.driver.findElement(By.cssSelector("a[href*=countries]")).click();
 
         List<String>countriesNamesList = new ArrayList<String>();
         List<String> indexesOfCountriesWithZones = new ArrayList<String>();
-        List<WebElement> countriesList = driver.findElements(By.cssSelector("tr.row"));
+        List<WebElement> countriesList = app.driver.findElements(By.cssSelector("tr.row"));
         int i=2;
         for (WebElement el: countriesList) {
             countriesNamesList.add(el.findElement(By.cssSelector("td:nth-of-type(5) a")).getAttribute("textContent"));
@@ -33,16 +34,16 @@ public class Verify_Countries_Sorting extends TestBase {
 
 
         for(String str: indexesOfCountriesWithZones) {
-            driver.findElement(By.cssSelector("tr.row:nth-of-type(" + str + ") td:nth-of-type(5) a")).click();
+            app.driver.findElement(By.cssSelector("tr.row:nth-of-type(" + str + ") td:nth-of-type(5) a")).click();
             List<String> stringOfZones = new ArrayList<String>();
-            List<WebElement> listOfZones = driver.findElements(By.cssSelector("table#table-zones td:nth-of-type(3) input[type=hidden]"));
+            List<WebElement> listOfZones = app.driver.findElements(By.cssSelector("table#table-zones td:nth-of-type(3) input[type=hidden]"));
 
             for(WebElement el: listOfZones){
                 stringOfZones.add(el.getAttribute("value"));
             }
 
             assertTrue(verifySorting(stringOfZones));
-            driver.navigate().back();
+            app.driver.navigate().back();
         }
     }
 }

@@ -1,3 +1,4 @@
+import AddDeleteProduct.TestBase;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -63,10 +64,10 @@ public class CorrectProductPage extends TestBase {
     @Test
     public void verifyCorrectProductPage(){
 
-        driver.navigate().to("http://localhost/litecart");
+        app.driver.navigate().to("http://localhost/litecart");
 
         //Elements on main page
-        WebElement product = driver.findElement(By.cssSelector("#box-campaigns li:first-of-type"));
+        WebElement product = app.driver.findElement(By.cssSelector("#box-campaigns li:first-of-type"));
         WebElement regularPriceEl = product.findElement(By.cssSelector(".regular-price"));
         WebElement campaignPriceEl = product.findElement(By.cssSelector(".campaign-price"));
 
@@ -75,13 +76,13 @@ public class CorrectProductPage extends TestBase {
         String campaignPrice = campaignPriceEl.getAttribute("textContent");
 
         //Verify that regular price is crossed out and campaign is bold on main page
-        if(driver instanceof InternetExplorerDriver){
+        if(app.driver instanceof InternetExplorerDriver){
             assertEquals("line-through", regularPriceEl.getCssValue("textDecoration"));
         }else {
             assertEquals("line-through", regularPriceEl.getCssValue("text-decoration-line"));
         }
 
-        if(driver instanceof FirefoxDriver || driver instanceof InternetExplorerDriver) {
+        if(app.driver instanceof FirefoxDriver || app.driver instanceof InternetExplorerDriver) {
             assertTrue(Integer.parseInt(campaignPriceEl.getCssValue("font-weight"))>=700);
 
         }else{
@@ -102,11 +103,11 @@ public class CorrectProductPage extends TestBase {
 
 
         //Elements on detailed page
-        driver.findElement(By.cssSelector("#box-campaigns li:first-of-type>a.link")).click();
-        WebElement regularPriceDetailedElement = driver.findElement(By.cssSelector(".regular-price"));
-        WebElement campaignPriceDetailedElement = driver.findElement(By.cssSelector(".campaign-price"));
+        app.driver.findElement(By.cssSelector("#box-campaigns li:first-of-type>a.link")).click();
+        WebElement regularPriceDetailedElement = app.driver.findElement(By.cssSelector(".regular-price"));
+        WebElement campaignPriceDetailedElement = app.driver.findElement(By.cssSelector(".campaign-price"));
 
-        String productNameDetailed = driver.findElement(By.cssSelector("h1.title")).getAttribute("textContent");
+        String productNameDetailed = app.driver.findElement(By.cssSelector("h1.title")).getAttribute("textContent");
         String productPriceDetailed = regularPriceDetailedElement.getAttribute("textContent");
         String campaignPriceDetailed = campaignPriceDetailedElement.getAttribute("textContent");
 
@@ -116,14 +117,14 @@ public class CorrectProductPage extends TestBase {
         assertTrue(campaignPriceSizeDetailed>regularPriceSizeDetailed);
 
         //Verify that regular price is crossed out and campaign is bold on detailed page
-        if(driver instanceof InternetExplorerDriver){
+        if(app.driver instanceof InternetExplorerDriver){
             assertEquals("line-through", regularPriceDetailedElement.getCssValue("textDecoration"));
         }else {
             assertEquals("line-through", regularPriceDetailedElement.getCssValue("text-decoration-line"));
 
-        }if(driver instanceof ChromeDriver) {
+        }if(app.driver instanceof ChromeDriver) {
             assertEquals("bold", campaignPriceDetailedElement.getCssValue("font-weight"));
-        }else if(driver instanceof FirefoxDriver || driver instanceof InternetExplorerDriver){
+        }else if(app.driver instanceof FirefoxDriver || app.driver instanceof InternetExplorerDriver){
             assertTrue(Integer.parseInt(campaignPriceDetailedElement.getCssValue("font-weight"))>=700);
         }
 
